@@ -10,7 +10,12 @@ const router = express.Router();
 /**
  * URL Lengthener
  */
-router.get('/api/url\*', require(__dirname + '/url/app'));
+router.get('/api/url/\*', (request, response, next) => {
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+});
+router.get('/api/url/\*', require(__dirname + '/url/app'));
 
 /**
  * Invalid URL
